@@ -101,4 +101,18 @@ public class CustomerControler {
         List<Customer> customerList = customerService.getCustomersByNameAndLastName(name, lastName);
         return ResponseEntity.ok(customerList);
     }
+    //9.İsmi ... içeren customer ları getirme>http://localhost:8080/customers/jpql?name=Ja
+    @GetMapping("/jpql")
+    public ResponseEntity<List<Customer>> getAllCustomersNameLike(@RequestParam("name") String name){
+        List<Customer> customers=customerService.getAllCustomersNameLike(name);
+        return ResponseEntity.ok(customers);
+    }
+// 10. Requestle gelen kelime name veya lastname de geçen customerları getir>http://localhost:8080/customers/search?word=Ja
+
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Customer>> getAllCustomersLikeNameOrLastName(@RequestParam("nameOrLastName") String nameOrLastName){
+        List<Customer> customers = customerService.getAllCustomersNameOrLastNameLike(nameOrLastName);
+        return ResponseEntity.ok(customers);
+    }
 }

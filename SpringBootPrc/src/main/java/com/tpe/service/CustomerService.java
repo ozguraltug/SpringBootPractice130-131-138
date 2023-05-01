@@ -85,4 +85,17 @@ public class CustomerService {
         List<Customer> customerList=customerRepository.findByNameAndLastName(name,lastName);
         return customerList;
     }
+
+    public List<Customer> getAllCustomersNameLike(String name) {
+        String lowerName=name.toLowerCase();
+        List<Customer> customers=customerRepository.findAllByNameLike(lowerName);
+        return customers;
+    }
+
+    public List<Customer> getAllCustomersNameOrLastNameLike(String nameOrLastName) {
+        String lowerName=nameOrLastName.toLowerCase();
+        List<Customer> customerList=customerRepository.findBynameOrLastname(lowerName);
+        return customerList;
+
+    }
 }
